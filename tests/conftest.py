@@ -6,7 +6,7 @@ import pytest
 from snek_case.core import JsonConfigurationProvider
 
 # test configuration
-TEST_CONFIG_FILE = "/workspaces/template-python/tests/config/config.tests.json"
+TEST_CONFIG_FILE = os.path.join(os.path.dirname(__file__), "config/config.tests.json")
 test_config = JsonConfigurationProvider(TEST_CONFIG_FILE)
 
 test_data_path = test_config.get("data_path")
