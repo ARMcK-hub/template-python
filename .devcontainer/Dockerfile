@@ -4,7 +4,7 @@ FROM armck/ubuntu-base:latest
 # ----- Environment Setup -----
 
 # Set Workspace directory
-ARG WORKSPACE=/workspaces/template-ubuntu
+ARG WORKSPACE=/workspaces/template-python
 ENV WORKSPACE=${WORKSPACE}
 
 # Avoid warnings by switching to noninteractive

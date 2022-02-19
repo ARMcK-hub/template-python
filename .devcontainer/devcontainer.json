@@ -1,10 +1,10 @@
 {
-	"name": "template-ubuntu",
+	"name": "template-python",
 	"dockerComposeFile": [
 		"../docker-compose.yml"
 	],
 	"service": "dev-container",
-	"workspaceFolder": "/workspaces/template-ubuntu",
+	"workspaceFolder": "/workspaces/template-python",
 	"settings": {
 		"terminal.integrated.profiles.linux": {
 			"bash": {
