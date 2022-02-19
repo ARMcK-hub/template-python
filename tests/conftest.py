@@ -1,5 +1,6 @@
 import os
 import shutil
+from pathlib import Path
 from typing import Iterable
 
 import pytest
@@ -9,7 +10,9 @@ from snek_case.core import JsonConfigurationProvider
 TEST_CONFIG_FILE = os.path.join(os.path.dirname(__file__), "config/config.tests.json")
 test_config = JsonConfigurationProvider(TEST_CONFIG_FILE)
 
-test_data_path = test_config.get("data_path")
+test_data_path = os.path.join(
+    Path(os.path.dirname(__file__)).parent, test_config.get("data_path")
+)
 
 
 @pytest.fixture(autouse=True, scope="function")
