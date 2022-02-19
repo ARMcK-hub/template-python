@@ -75,7 +75,7 @@ jobs:
 
     - name: Link with mypy
       run: |
-        poetry run mypy
+        poetry run mypy .
 
   test:
     runs-on: ubuntu-latest
