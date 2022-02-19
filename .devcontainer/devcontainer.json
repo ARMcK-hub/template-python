@@ -5,6 +5,7 @@
 	],
 	"service": "dev-container",
 	"workspaceFolder": "/workspaces/template-python",
+	"postCreateCommand": "cd $WORKSPACE && poetry install",
 	"settings": {
 		"terminal.integrated.profiles.linux": {
 			"bash": {
@@ -18,6 +19,9 @@
 		}
 	},
 	"extensions": [
-		"shd101wyy.markdown-preview-enhanced"
+		"ms-python.python",
+		"ms-python.vscode-pylance",
+		"shd101wyy.markdown-preview-enhanced",
+		"janisdd.vscode-edit-csv"
 	]
 }

@@ -1,5 +1,5 @@
 
-FROM armck/ubuntu-base:latest
+FROM armck/python-base:latest
 
 # ----- Environment Setup -----
 
@@ -17,11 +17,17 @@ RUN mkdir /tmp/dockerinstall \
     && cd /tmp/dockerinstall \
     # Installs
     && apt-get update \
+    && apt-get install -y \
+        libsqlite3-dev \
+        sqlite3 \
     # Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/dockerinstall
+
+COPY poetry.lock pyproject.toml ${WORKSPACE}/
+RUN cd $WORKSPACE && poetry install --no-root
 
 # ----- Workspace Prep -----
 WORKDIR ${WORKSPACE}
