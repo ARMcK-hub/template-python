@@ -16,10 +16,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN mkdir /tmp/dockerinstall \
     && cd /tmp/dockerinstall \
     # Installs
-    && apt-get update \
-    && apt-get install -y \
-        libsqlite3-dev \
-        sqlite3 \
     # Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \
