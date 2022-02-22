@@ -43,16 +43,27 @@
 Here is where you can you a much longer description of your project. You might include features and inspiration here.
 
 The `template-python` repository adds some nifty and time-saving features like:
-- Automatic Pull Request Management
-- Docker Compose
-- Docker Build & Push Workflows
-- MIT License
-- Templates for:
-  - .gitignore
-  - .dockerignore
-  - Project README
-  - VS Code Settings
-  - CI Workflows
+- *All of the benefits of [template-ubuntu](https://github.com/ARMcK-hub/template-ubuntu) PLUS..*
+- Various Python Development tools 
+  - Environments via Poetry
+  - Dependency Management via Poetry
+  - Static Type Linting via Mypy
+  - Format Linting via Flake8
+  - File Formatting via Black & Isort 
+  - Testing Framework via Pytest
+- Github Python Workflows
+  - Linting
+  - Testing
+- Template Files for
+  - Python Development Tool Initialization
+    - `mypy.ini`
+    - `.flake8`
+    - `pytest.ini`
+    - `conftest.py`
+  - Initial Python Project
+    - `/<project>/`
+    - `/tests/`
+    - `/docs/`
 
 
 ### Quick Start
