@@ -2,8 +2,8 @@
 
 [CmdletBinding()]
 param (
-    [Parameter(Mandatory=$false)]
-    [String]$TemplateProjectName = "template-ubuntu",
+    [Parameter(Mandatory = $false)]
+    [String]$TemplateProjectName = "template-python",
     [String]$ConfigIniFileName = "config.ini.json",
     [String]$ConfigMetaFileName = "config.meta.json"
 )
@@ -19,76 +19,111 @@ $MetaFile = (Get-ChildItem $ConfigPath -Recurse -Filter "*$ConfigMetaFileName").
 $Config = Get-Content $ConfigFile | ConvertFrom-Json
 $Meta = Get-Content $MetaFile | ConvertFrom-Json
 
+# collecting project name
 $ProjectName = (Get-Item $RootPath).Name
-$ReadmeFile = (Get-ChildItem $RootPath -Filter "*README.md").FullName
-$CiFile = (Get-ChildItem $RootPath -Recurse -Filter "*ci.yml").FullName
+
+# collecting changable files in permitted directories
+$Directories = (Get-ChildItem $RootPath -Directory -Exclude ini, .vscode, docs, *cache)
+[System.Collections.ArrayList]$Files = (Get-ChildItem $RootPath -File).FullName
+foreach ($Dir in $Directories.FullName) {
+    $Files += (Get-ChildItem $Dir -File -Recurse -Exclude *.pyc).FullName
+}
 
 function ReplaceContents {
-    # places contents in a given file
+    # places contents in a given file if the updated contents are not the same
     param (
         [String]$JobName,
-        [String]$FilePath,
+        [Array]$Files,
         [String]$OldText,
         [String]$NewText
     )
     
-    $Contents = Get-Content -Path $FilePath
-    $UpdatedContents = $Contents -Replace $OldText,$NewText
-    Set-Content -Path $FilePath -Value $UpdatedContents
-    Write-Output "Replace-Content  [$JobName] : Updated $FilePath"
+    foreach ($File in $Files) {
+        $Contents = [System.IO.File]::ReadAllText($File)
+        $UpdatedContents = $Contents.Replace($OldText, $NewText)
+
+        if ( $Contents -ne $UpdatedContents ) {
+            Set-Content -Path $FilePath -Value $UpdatedContents
+            Write-Output "Replace-Content  [$JobName] : Updated  $File"
+        }
+    }
 }
+
+function RenameDirectory {
+    # places contents in a given file if the updated contents are not the same
+    param (
+        [String]$JobName,
+        [Array]$Directories,
+        [String]$OldName,
+        [String]$NewName
+    )
+    
+    foreach ($Dir in $Directories) {
+        if ( $Dir.Name -eq $OldName ) {
+            $UpdateFullName = Join-Path -Path $Dir.parent.FullName -ChildPath $NewName
+            Rename-Item -Path $Dir.FullName -NewName $UpdateFullName
+            Write-Output "Rename-Directory  [$JobName] : Updated  $($Dir.FullName)   to   $UpdateFullName"
+        }
+    }
+}
+
+
+# ----- Excecuting Jobs -----
 
 # replace README logo
 ReplaceContents -JobName "ProjectLogoPath" `
-    -FilePath $ReadmeFile `
+    -Files $Files `
     -OldText $Meta.ProjectLogoPath `
     -NewText $Config.ProjectLogoPath
 
 # replace README tagline
 ReplaceContents -JobName "ProjectTagline" `
-    -FilePath $ReadmeFile `
+    -Files $Files `
     -OldText $Meta.ProjectTagline `
-    -NewText $Config.ProjectTagline 
+    -NewText $Config.ProjectTagline
 
-
-# replace stackshare account
-$StackSharePrefix = "https://stackshare.io/"
-
+# replace stackshare account in README
 ReplaceContents -JobName "StackShareAccount" `
-    -FilePath $ReadmeFile `
-    -OldText ("{0}{1}" -f $StackSharePrefix, $Meta.StackShareAccount) `
-    -NewText ("{0}{1}" -f $StackSharePrefix, $Config.StackShareAccount)
+    -Files $Files `
+    -OldText "https://stackshare.io/$($Meta.StackShareAccount)" `
+    -NewText "https://stackshare.io/$($Config.StackShareAccount)"
 
 
-# replace codecov account
-$CodeCovSharePrefix = "https://codecov.io/gh/"
-
+# replace codecov account in README
 ReplaceContents -JobName "CodeCovAccount" `
-    -FilePath $ReadmeFile `
-    -OldText ("{0}{1}" -f $CodeCovSharePrefix, $Meta.CodeCovAccount) `
-    -NewText ("{0}{1}" -f $CodeCovSharePrefix, $Config.CodeCovAccount)
+    -Files $Files `
+    -OldText "https://codecov.io/gh/$($Meta.CodeCovAccount)" `
+    -NewText "https://codecov.io/gh/$($Config.CodeCovAccount)"
 
-# replace github account
+# replace github account in README
 ReplaceContents -JobName "GitHubAccount" `
-    -FilePath $ReadmeFile `
-    -OldText ("{0}/{1}" -f $Meta.GitHubAccount, $ProjectName) `
-    -NewText ("{0}/{1}" -f $Config.GitHubAccount, $ProjectName)
+    -Files $Files `
+    -OldText "$($Meta.GitHubAccount)/$ProjectName" `
+    -NewText "$($Config.GitHubAccount)/$ProjectName"
 
-# replace dockerhub account
+# replace dockerhub account in ci file
 ReplaceContents -JobName "DockerHubAccount" `
-    -FilePath $CiFile `
-    -OldText $Meta.DockerHubAccount `
-    -NewText $Config.DockerHubAccount
+    -Files $Files `
+    -OldText "image: $($Meta.DockerHubAccount)" `
+    -NewText "image: $($Config.DockerHubAccount)"
 
-# replace ProjectName everywhere except in ini directory
-$TemplateFiles = (Get-ChildItem $RootPath -Exclude "ini") | Get-ChildItem -File -Recurse
+# replace ProjectName everywhere
+ReplaceContents -JobName "ProjectName" `
+    -Files $Files `
+    -OldText $TemplateProjectName `
+    -NewText "$ProjectName-test" #TODO
 
-foreach ($File in $TemplateFiles) {
-    ReplaceContents -JobName "ProjectName" `
-        -FilePath $File.FullName `
-        -OldText $TemplateProjectName `
-        -NewText $ProjectName
-}
+# renaming directories for ProjectName
+RenameDirectory -JobName "ProjectDirectoryName" `
+    -Directories $Directories `
+    -OldName "snek_case" `
+    -NewName "$ProjectName"
+
+# Updating pyproject to include new ProjectName as module
+ReplaceContents -JobName "ProjectModuleName" `
+    -Files $Files `
+    -OldText "snek_case" `
+    -NewText $ProjectName
 
 # Replacing config.meta for next interation
 $Config | ConvertTo-Json  | Set-Content $MetaFile
