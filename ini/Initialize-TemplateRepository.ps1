@@ -43,7 +43,7 @@ function ReplaceContents {
         $UpdatedContents = $Contents.Replace($OldText, $NewText)
 
         if ( $Contents -ne $UpdatedContents ) {
-            Set-Content -Path $FilePath -Value $UpdatedContents
+            Set-Content -Path $File -Value $UpdatedContents
             Write-Output "Replace-Content  [$JobName] : Updated  $File"
         }
     }
