@@ -60,9 +60,8 @@ function RenameDirectory {
     
     foreach ($Dir in $Directories) {
         if ( $Dir.Name -eq $OldName ) {
-            $UpdateFullName = Join-Path -Path $Dir.parent.FullName -ChildPath $NewName
-            Rename-Item -Path $Dir.FullName -NewName $UpdateFullName
-            Write-Output "Rename-Directory  [$JobName] : Updated  $($Dir.FullName)   to   $UpdateFullName"
+            Rename-Item -Path $Dir.FullName -NewName $NewName
+            Write-Output "Rename-Directory  [$JobName] : Updated  $($Dir.FullName)   to   $NewName"
         }
     }
 }
@@ -111,19 +110,21 @@ ReplaceContents -JobName "DockerHubAccount" `
 ReplaceContents -JobName "ProjectName" `
     -Files $Files `
     -OldText $TemplateProjectName `
-    -NewText "$ProjectName-test" #TODO
-
-# renaming directories for ProjectName
-RenameDirectory -JobName "ProjectDirectoryName" `
-    -Directories $Directories `
-    -OldName "snek_case" `
-    -NewName "$ProjectName"
+    -NewText $ProjectName
 
 # Updating pyproject to include new ProjectName as module
+# NOTE: Python modules must be snake_case 
 ReplaceContents -JobName "ProjectModuleName" `
     -Files $Files `
     -OldText "snek_case" `
-    -NewText $ProjectName
+    -NewText $ProjectName.Replace("-", "_")
+
+# renaming directories for ProjectName
+# NOTE: Python modules must be snake_case 
+RenameDirectory -JobName "ProjectDirectoryName" `
+    -Directories $Directories `
+    -OldName "snek_case" `
+    -NewName $ProjectName.Replace("-", "_")
 
 # Replacing config.meta for next interation
 $Config | ConvertTo-Json  | Set-Content $MetaFile
