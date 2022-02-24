@@ -2,28 +2,28 @@
 <div align="center">
     <p>
     <!-- Header -->
-        <img width="100px" src="./ini/readme_logo.png"  alt="template-ubuntu" />
-        <h2>template-ubuntu</h2>
-        <p><i>cool-template-ubuntu-tagline</i></p>
+        <img width="100px" src="./ini/readme_logo.png"  alt="template-python" />
+        <h2>template-python</h2>
+        <p><i>cool-template-python-tagline</i></p>
     </p>
     <p>
     <!-- Shields -->
-        <a href="https://github.com/armck-hub/template-ubuntu/LICENSE">
-            <img alt="License" src="https://img.shields.io/github/license/armck-hub/template-ubuntu.svg" />
+        <a href="https://github.com/armck-hub/template-python/LICENSE">
+            <img alt="License" src="https://img.shields.io/github/license/armck-hub/template-python.svg" />
         </a>
-        <a href="https://github.com/armck-hub/template-ubuntu/actions">
-            <img alt="Tests Passing" src="https://github.com/armck-hub/template-ubuntu/workflows/CI/badge.svg" />
+        <a href="https://github.com/armck-hub/template-python/actions">
+            <img alt="Tests Passing" src="https://github.com/armck-hub/template-python/workflows/CI/badge.svg" />
         </a>
-        <a href="https://codecov.io/gh/armck-hub/template-ubuntu">
-            <img alt="Code Coverage" src="https://codecov.io/gh/armck-hub/template-ubuntu/branch/master/graph/badge.svg" />
+        <a href="https://codecov.io/gh/armck-hub/template-python">
+            <img alt="Code Coverage" src="https://codecov.io/gh/armck-hub/template-python/branch/master/graph/badge.svg" />
         </a>
-        <a href="https://github.com/armck-hub/template-ubuntu/issues">
-            <img alt="Issues" src="https://img.shields.io/github/issues/armck-hub/template-ubuntu" />
+        <a href="https://github.com/armck-hub/template-python/issues">
+            <img alt="Issues" src="https://img.shields.io/github/issues/armck-hub/template-python" />
         </a>
-        <a href="https://github.com/armck-hub/template-ubuntu/pulls">
-            <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/armck-hub/template-ubuntu" />
+        <a href="https://github.com/armck-hub/template-python/pulls">
+            <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/armck-hub/template-python" />
         </a>
-        <a href="https://stackshare.io/armck-hub/template-ubuntu">
+        <a href="https://stackshare.io/armck-hub/template-python">
             <img alt="StackShare.io" src="http://img.shields.io/badge/tech-stack-0690fa.svg?label=StackShare.io">
         </a>
     </p>
@@ -31,9 +31,9 @@
     <!-- Links -->
         <a href="#demo">View Demo</a>
         ·
-        <a href="https://github.com/armck-hub/template-ubuntu/issues/new/choose">Report Bug</a>
+        <a href="https://github.com/armck-hub/template-python/issues/new/choose">Report Bug</a>
         ·
-        <a href="https://github.com/armck-hub/template-ubuntu/issues/new/choose">Request Feature</a>
+        <a href="https://github.com/armck-hub/template-python/issues/new/choose">Request Feature</a>
     </p>
 </div>
 <br>
@@ -42,17 +42,28 @@
 <!-- Description -->
 Here is where you can you a much longer description of your project. You might include features and inspiration here.
 
-The `template-ubuntu` repository adds some nifty and time-saving features like:
-- Automatic Pull Request Management
-- Docker Compose
-- Docker Build & Push Workflows
-- MIT License
-- Templates for:
-  - .gitignore
-  - .dockerignore
-  - Project README
-  - VS Code Settings
-  - CI Workflows
+The `template-python` repository adds some nifty and time-saving features like:
+- *All of the benefits of [template-ubuntu](https://github.com/ARMcK-hub/template-ubuntu) PLUS..*
+- Various Python Development tools 
+  - Environments via Poetry
+  - Dependency Management via Poetry
+  - Static Type Linting via Mypy
+  - Format Linting via Flake8
+  - File Formatting via Black & Isort 
+  - Testing Framework via Pytest
+- Github Python Workflows
+  - Linting
+  - Testing
+- Template Files for
+  - Python Development Tool Initialization
+    - `mypy.ini`
+    - `.flake8`
+    - `pytest.ini`
+    - `conftest.py`
+  - Initial Python Project
+    - `/<project>/`
+    - `/tests/`
+    - `/docs/`
 
 
 ### Quick Start

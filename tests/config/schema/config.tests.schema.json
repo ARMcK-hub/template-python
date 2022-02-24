@@ -1,0 +1,15 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "title": "template-python Config",
+    "description": "template-python Configuration Schema",
+    "type": "object",
+    "required": [
+        "data_root"
+    ],
+    "properties": {
+        "data_root": {
+            "type": "string",
+            "description": "Root path of test data"
+        }
+    }
+}

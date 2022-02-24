@@ -1,0 +1,4 @@
+{
+    "$schema": "./schema/config.schema.json",
+    "snek_type": "cool"
+}
