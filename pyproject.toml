@@ -2,7 +2,7 @@
 name = "template-python"
 version = "0.1.0"
 description = ""
-authors = ["armck-hub"]
+authors = ["armckinney"]
 packages = [
     { include = "snek_case" }
 ]

@@ -8,22 +8,22 @@
     </p>
     <p>
     <!-- Shields -->
-        <a href="https://github.com/armck-hub/template-python/LICENSE">
-            <img alt="License" src="https://img.shields.io/github/license/armck-hub/template-python.svg" />
+        <a href="https://github.com/armckinney/template-python/LICENSE">
+            <img alt="License" src="https://img.shields.io/github/license/armckinney/template-python.svg" />
         </a>
-        <a href="https://github.com/armck-hub/template-python/actions">
-            <img alt="Tests Passing" src="https://github.com/armck-hub/template-python/workflows/CI/badge.svg" />
+        <a href="https://github.com/armckinney/template-python/actions">
+            <img alt="Tests Passing" src="https://github.com/armckinney/template-python/workflows/CI/badge.svg" />
         </a>
-        <a href="https://codecov.io/gh/armck-hub/template-python">
-            <img alt="Code Coverage" src="https://codecov.io/gh/armck-hub/template-python/branch/master/graph/badge.svg" />
+        <a href="https://codecov.io/gh/armckinney/template-python">
+            <img alt="Code Coverage" src="https://codecov.io/gh/armckinney/template-python/branch/master/graph/badge.svg" />
         </a>
-        <a href="https://github.com/armck-hub/template-python/issues">
-            <img alt="Issues" src="https://img.shields.io/github/issues/armck-hub/template-python" />
+        <a href="https://github.com/armckinney/template-python/issues">
+            <img alt="Issues" src="https://img.shields.io/github/issues/armckinney/template-python" />
         </a>
-        <a href="https://github.com/armck-hub/template-python/pulls">
-            <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/armck-hub/template-python" />
+        <a href="https://github.com/armckinney/template-python/pulls">
+            <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/armckinney/template-python" />
         </a>
-        <a href="https://stackshare.io/armck-hub/template-python">
+        <a href="https://stackshare.io/armck/template-python">
             <img alt="StackShare.io" src="http://img.shields.io/badge/tech-stack-0690fa.svg?label=StackShare.io">
         </a>
     </p>
@@ -31,9 +31,9 @@
     <!-- Links -->
         <a href="#demo">View Demo</a>
         ·
-        <a href="https://github.com/armck-hub/template-python/issues/new/choose">Report Bug</a>
+        <a href="https://github.com/armckinney/template-python/issues/new/choose">Report Bug</a>
         ·
-        <a href="https://github.com/armck-hub/template-python/issues/new/choose">Request Feature</a>
+        <a href="https://github.com/armckinney/template-python/issues/new/choose">Request Feature</a>
     </p>
 </div>
 <br>
@@ -43,7 +43,7 @@
 Here is where you can you a much longer description of your project. You might include features and inspiration here.
 
 The `template-python` repository adds some nifty and time-saving features like:
-- *All of the benefits of [template-ubuntu](https://github.com/ARMcK-hub/template-ubuntu) PLUS..*
+- *All of the benefits of [template-ubuntu](https://github.com/armckinney/template-ubuntu) PLUS..*
 - Various Python Development tools 
   - Environments via Poetry
   - Dependency Management via Poetry

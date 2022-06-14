@@ -2,8 +2,8 @@
     "$schema": "./schema/config.schema.json",
     "ProjectLogoPath": "./ini/readme_logo.png",
     "ProjectTagline": "cool-template-python-tagline",
-    "GitHubAccount": "armck-hub",
+    "GitHubAccount": "armckinney",
     "DockerHubAccount": "armck",
-    "StackShareAccount": "armck-hub",
-    "CodeCovAccount": "armck-hub"
+    "StackShareAccount": "armck",
+    "CodeCovAccount": "armckinney"
 }
