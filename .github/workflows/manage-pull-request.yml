@@ -24,7 +24,7 @@ jobs:
       - name: Configure pull request
         id: config_pr
         run: |
-          PR_STRING="Resolve-${{ github.event.issue.number }}-${{ github.event.issue.title }}"
+          PR_STRING="${{ github.event.issue.number }}-${{ github.event.issue.title }}"
           PR_TITLE=${PR_STRING// /-}
           echo ::set-output name=PR_TITLE::${PR_TITLE}
           echo ${PR_TITLE} > ./.github/autopr/pullrequest.txt
@@ -58,7 +58,7 @@ jobs:
       - name: Configuring pull request
         id: config_pr
         run: |
-          PR_STRING="Resolve-${{ github.event.issue.number }}-${{ github.event.issue.title }}"
+          PR_STRING="${{ github.event.issue.number }}-${{ github.event.issue.title }}"
           PR_TITLE=${PR_STRING// /-}
           echo ::set-output name=PR_TITLE::${PR_TITLE}
           echo ${PR_TITLE} > pullrequest.txt
