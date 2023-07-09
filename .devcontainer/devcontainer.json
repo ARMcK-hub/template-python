@@ -23,6 +23,7 @@
 			"extensions": [
 				"ms-python.python",
 				"ms-python.vscode-pylance",
+				"hashicorp.terraform",
 				"shd101wyy.markdown-preview-enhanced",
 				"janisdd.vscode-edit-csv"
 			]
