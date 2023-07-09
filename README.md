@@ -54,6 +54,7 @@ The `template-python` repository adds some nifty and time-saving features like:
 - Github Python Workflows
   - Linting
   - Testing
+- Azure Container App Deployment
 - Template Files for
   - Python Development Tool Initialization
     - `mypy.ini`
