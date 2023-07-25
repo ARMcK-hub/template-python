@@ -23,7 +23,7 @@ $Meta = Get-Content $MetaFile | ConvertFrom-Json
 $ProjectName = (Get-Item $RootPath).Name
 
 # collecting changable files in permitted directories
-$Directories = (Get-ChildItem $RootPath -Directory -Exclude ini, .vscode, docs, *cache)
+$Directories = (Get-ChildItem $RootPath -Directory -Force -Exclude ini, .vscode, docs, *cache)
 [System.Collections.ArrayList]$Files = (Get-ChildItem $RootPath -File).FullName
 foreach ($Dir in $Directories.FullName) {
     $Files += (Get-ChildItem $Dir -File -Recurse -Exclude *.pyc).FullName
